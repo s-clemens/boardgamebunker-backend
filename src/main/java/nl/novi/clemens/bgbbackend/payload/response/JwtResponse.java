@@ -8,16 +8,16 @@ public class JwtResponse {
     private Long id;
     private String username;
     private String email;
-    private String phoneNumber;
     private List<String> roles;
+    private String phonenumber;
 
     public JwtResponse(String accessToken, Long id, String username, String email, String phonenumber,  List<String> roles) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.email = email;
-        this.phoneNumber = phonenumber;
         this.roles = roles;
+        this.phonenumber = phonenumber;
     }
 
     public String getAccessToken() {
@@ -65,10 +65,10 @@ public class JwtResponse {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 }

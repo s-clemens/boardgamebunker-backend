@@ -31,7 +31,7 @@ public class TestController {
         return testService.generateUserContent();
     }
 
-    @GetMapping("user/info")
+    @GetMapping("user/boardgametypes")
     public List infoAccess() {
         return testService.generateBoardgameTypeContent();
     }

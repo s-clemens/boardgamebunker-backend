@@ -18,13 +18,14 @@ public class TestService {
     public String generatePublicContent() {
         return "Public Content.";
     }
-    public List<BoardgameType> generateBoardgameTypeContent() {
-        return boardgameTypeRepository.findAll();
-    }
+
 
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String generateUserContent() {
         return "User Content.";
+    }
+    public List<BoardgameType> generateBoardgameTypeContent() {
+        return boardgameTypeRepository.findAll();
     }
 
 

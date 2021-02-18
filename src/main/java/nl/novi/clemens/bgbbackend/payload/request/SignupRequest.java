@@ -18,7 +18,6 @@ public class SignupRequest {
 
     private Set<String> role;
 
-//    @NotBlank
     @Size(min = 10)
     private String phonenumber;
 
@@ -60,11 +59,11 @@ public class SignupRequest {
         this.role = role;
     }
 
-    public String getPhoneNumber() {
-        return phonenumber;
+    public String getPhonenumber() {
+        return this.phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phonenumber = phoneNumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 }

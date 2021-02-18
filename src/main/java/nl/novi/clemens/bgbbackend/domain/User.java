@@ -33,7 +33,7 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String phoneNumber;
+    private String phonenumber;
 
     @ManyToMany
     @JoinTable (name = "user_role",
@@ -49,10 +49,11 @@ public class User {
 
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, String phonenumber) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.phonenumber = phonenumber;
     }
 
     public long getId() {
@@ -95,12 +96,12 @@ public class User {
         this.roles = roles;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getphonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setsetphonenumber(String phoneNumber) {
+        this.phonenumber = phonenumber;
     }
 
     public Set<Booking> getBookings() {
