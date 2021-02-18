@@ -42,4 +42,8 @@ public class Booking {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "timeslot_id")
     private Timeslot timeslot;
+
+    @ManyToOne (fetch = FetchType.EAGER)
+    @JoinColumn (name = "user_id")
+    private User user;
 }
