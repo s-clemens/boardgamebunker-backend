@@ -30,4 +30,28 @@ public class ProductType {
 
     @OneToMany (mappedBy = "producttype")
     private Set<Product> products;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public EProductType getName() {
+        return name;
+    }
+
+    public void setName(EProductType name) {
+        this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }

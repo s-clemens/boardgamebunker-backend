@@ -25,13 +25,13 @@ public class Boardgame {
     private long boardgame_id;
 
     @Column
-    private int totalStuck;
+    private int totalstock;
 
     @Column
-    private int minPlayers;
+    private int minplayers;
 
     @Column
-    private int maxPlayers;
+    private int maxplayers;
 
     @Column
     private String description;
@@ -42,4 +42,60 @@ public class Boardgame {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "boardgametype_id")
     private BoardgameType boardgametype;
+
+    public long getBoardgame_id() {
+        return boardgame_id;
+    }
+
+    public void setBoardgame_id(long boardgame_id) {
+        this.boardgame_id = boardgame_id;
+    }
+
+    public int getTotalStuck() {
+        return totalstock;
+    }
+
+    public void setTotalStuck(int totalStuck) {
+        this.totalstock = totalStuck;
+    }
+
+    public int getMinPlayers() {
+        return minplayers;
+    }
+
+    public void setMinPlayers(int minPlayers) {
+        this.minplayers = minPlayers;
+    }
+
+    public int getMaxPlayers() {
+        return maxplayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxplayers = maxPlayers;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Product getBoardgame_product_ref() {
+        return boardgame_product_ref;
+    }
+
+    public void setBoardgame_product_ref(Product boardgame_product_ref) {
+        this.boardgame_product_ref = boardgame_product_ref;
+    }
+
+    public BoardgameType getBoardgametype() {
+        return boardgametype;
+    }
+
+    public void setBoardgametype(BoardgameType boardgametype) {
+        this.boardgametype = boardgametype;
+    }
 }

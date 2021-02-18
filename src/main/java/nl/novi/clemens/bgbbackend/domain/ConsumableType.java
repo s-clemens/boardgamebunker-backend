@@ -31,7 +31,15 @@ public class ConsumableType {
     @OneToMany (mappedBy = "consumabletype")
     private Set<Consumable> consumables;
 
+    public long getConsumabletype_id() {
+        return consumabletype_id;
+    }
 
+    public EConsumableType getName() {
+        return name;
+    }
 
-
+    public Set<Consumable> getConsumables() {
+        return consumables;
+    }
 }

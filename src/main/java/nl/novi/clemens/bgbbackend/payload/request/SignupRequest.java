@@ -18,9 +18,9 @@ public class SignupRequest {
 
     private Set<String> role;
 
-    @NotBlank
+//    @NotBlank
     @Size(min = 10)
-    private String phoneNumber;
+    private String phonenumber;
 
     @NotBlank
     @Size(min = 6, max = 40)
@@ -61,10 +61,10 @@ public class SignupRequest {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phonenumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phonenumber = phoneNumber;
     }
 }

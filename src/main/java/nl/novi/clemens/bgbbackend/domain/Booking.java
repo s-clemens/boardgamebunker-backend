@@ -46,4 +46,68 @@ public class Booking {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "user_id")
     private User user;
+
+    public long getBookingid() {
+        return bookingid;
+    }
+
+    public void setBookingid(long bookingid) {
+        this.bookingid = bookingid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(Boolean cancelled) {
+        isCancelled = cancelled;
+    }
+
+    public Set<BookingLine> getBookinglines() {
+        return bookinglines;
+    }
+
+    public void setBookinglines(Set<BookingLine> bookinglines) {
+        this.bookinglines = bookinglines;
+    }
+
+    public Playroom getPlayroom() {
+        return playroom;
+    }
+
+    public void setPlayroom(Playroom playroom) {
+        this.playroom = playroom;
+    }
+
+    public Set<Guest> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Set<Guest> guests) {
+        this.guests = guests;
+    }
+
+    public Timeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public void setTimeslot(Timeslot timeslot) {
+        this.timeslot = timeslot;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

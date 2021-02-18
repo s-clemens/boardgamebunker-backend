@@ -31,4 +31,36 @@ public class Guest {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "booking_id")
     private Booking booking;
+
+    public long getGuestid() {
+        return guestid;
+    }
+
+    public void setGuestid(long guestid) {
+        this.guestid = guestid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 }

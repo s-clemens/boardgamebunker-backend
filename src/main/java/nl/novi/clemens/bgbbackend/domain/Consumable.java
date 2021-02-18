@@ -31,5 +31,27 @@ public class Consumable {
     @JoinColumn(name = "consumabletype_id")
     private ConsumableType consumabletype;
 
+    public long getConsumable_id() {
+        return consumable_id;
+    }
 
+    public void setConsumable_id(long consumable_id) {
+        this.consumable_id = consumable_id;
+    }
+
+    public Product getConsumable_product_ref() {
+        return consumable_product_ref;
+    }
+
+    public void setConsumable_product_ref(Product consumable_product_ref) {
+        this.consumable_product_ref = consumable_product_ref;
+    }
+
+    public ConsumableType getConsumabletype() {
+        return consumabletype;
+    }
+
+    public void setConsumabletype(ConsumableType consumabletype) {
+        this.consumabletype = consumabletype;
+    }
 }

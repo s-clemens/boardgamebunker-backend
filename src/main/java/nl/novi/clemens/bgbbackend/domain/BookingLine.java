@@ -35,6 +35,37 @@ public class BookingLine {
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
+    public long getBookinglineid() {
+        return bookinglineid;
+    }
+
+    public void setBookinglineid(long bookinglineid) {
+        this.bookinglineid = bookinglineid;
+    }
+
+    public int getNumberofItems() {
+        return numberofItems;
+    }
+
+    public void setNumberofItems(int numberofItems) {
+        this.numberofItems = numberofItems;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
+    }
 }
 
 

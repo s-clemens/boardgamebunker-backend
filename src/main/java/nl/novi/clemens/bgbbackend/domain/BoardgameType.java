@@ -1,5 +1,6 @@
 package nl.novi.clemens.bgbbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nl.novi.clemens.bgbbackend.domain.enums.EBoardgameType;
 
 import javax.persistence.Column;
@@ -31,7 +32,16 @@ public class BoardgameType {
     @OneToMany (mappedBy = "boardgametype")
     private Set<Boardgame> boardgames;
 
+    public long getBoardgametype_id() {
+        return boardgametype_id;
+    }
 
+    public EBoardgameType getName() {
+        return name;
+    }
 
-
+    @JsonIgnore
+    public Set<Boardgame> getBoardgames() {
+        return boardgames;
+    }
 }

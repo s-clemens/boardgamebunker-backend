@@ -33,4 +33,36 @@ public class Timeslot {
 
     @OneToMany(mappedBy = "timeslot")
     private Set<Booking> bookings;
+
+    public long getTimeslotid() {
+        return timeslotid;
+    }
+
+    public void setTimeslotid(long timeslotid) {
+        this.timeslotid = timeslotid;
+    }
+
+    public ETimeslot getTimeslot() {
+        return timeslot;
+    }
+
+    public void setTimeslot(ETimeslot timeslot) {
+        this.timeslot = timeslot;
+    }
+
+    public Date getDay() {
+        return day;
+    }
+
+    public void setDay(Date day) {
+        this.day = day;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }

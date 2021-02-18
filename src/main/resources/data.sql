@@ -20,3 +20,20 @@ INSERT INTO producttype(name) VALUES('CONSUMABLES');
 
 INSERT INTO consumabletype(name) VALUES('FOOD');
 INSERT INTO consumabletype(name) VALUES('DRINKS');
+
+INSERT INTO boardgametype(name) VALUES('THIRTY_MINUTES');
+INSERT INTO boardgametype(name) VALUES('ONE_HOUR');
+INSERT INTO boardgametype(name) VALUES('TWO_HOURS');
+
+INSERT INTO playroom(roomNr, maxGuests) VALUES('ONE', 3);
+INSERT INTO playroom(roomNr, maxGuests) VALUES('TWO', 6);
+INSERT INTO playroom(roomNr, maxGuests) VALUES('THREE', 9);
+INSERT INTO playroom(roomNr, maxGuests) VALUES('FOUR', 12);
+
+-- Het volgende werkt maar idealiter is een id nullable bij product.
+INSERT INTO consumable(consumabletype_id) VALUES(2)
+INSERT INTO boardgame(totalStock, minPlayers, maxPlayers, description) VALUES(3,1,4,'test')
+INSERT INTO store_product(product_name, product_price, image_cover, producttype_id, consumable_id, boardgame_id) VALUES ('Monopoly', 4.99, null, 2, 1, 1);
+
+
+

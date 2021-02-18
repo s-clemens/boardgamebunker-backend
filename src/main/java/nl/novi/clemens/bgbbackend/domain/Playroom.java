@@ -26,11 +26,35 @@ public class Playroom {
     private long playroomid;
 
     @Enumerated(EnumType.STRING)
-    private EPlayroomNr roomNr;
+    private EPlayroomNr roomnr;
 
     @Column
-    private int maxGuests;
+    private int maxguests;
 
     @OneToMany (mappedBy = "playroom")
     private Set<Booking> bookings;
+
+    public long getPlayroomid() {
+        return playroomid;
+    }
+
+    public void setPlayroomid(long playroomid) {
+        this.playroomid = playroomid;
+    }
+
+    public EPlayroomNr getRoomNr() {
+        return roomnr;
+    }
+
+    public int getMaxGuests() {
+        return maxguests;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }
