@@ -1,27 +1,27 @@
-package nl.novi.clemens.bgbbackend.payload.request;
+package nl.novi.clemens.bgbbackend.payload.response;
 
-import org.apache.tomcat.jni.Local;
-
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.Date;
 
-public class CovidRegulationRequest {
+public class CovidRegulationResponse {
 
-
-    @NotBlank
+    private long id;
     private int nrallowedguests;
-
-    @NotBlank
     private LocalDate startdate;
-
-    @NotBlank
     private LocalDate enddate;
 
-    public CovidRegulationRequest(int nrallowedguests, @NotBlank LocalDate startdate, @NotBlank LocalDate enddate) {
+    public CovidRegulationResponse(long id, int nrallowedguests, LocalDate startdate, LocalDate enddate) {
+        this.id = id;
         this.nrallowedguests = nrallowedguests;
         this.startdate = startdate;
         this.enddate = enddate;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getNrallowedguests() {
@@ -46,14 +46,5 @@ public class CovidRegulationRequest {
 
     public void setEnddate(LocalDate enddate) {
         this.enddate = enddate;
-    }
-
-    @Override
-    public String toString() {
-        return "CovidRegulationRequest{" +
-                "nrallowedguests=" + nrallowedguests +
-                ", startdate=" + startdate +
-                ", enddate=" + enddate +
-                '}';
     }
 }

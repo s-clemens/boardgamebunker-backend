@@ -15,11 +15,11 @@ public class CovidRegulation {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
-    @Column(columnDefinition = "serial")
-    private long bookingid;
+    @Column(columnDefinition = "serial", name = "id")
+    private long covidregulationid;
 
     @Column
     private int nrAllowedGuests;
@@ -30,18 +30,21 @@ public class CovidRegulation {
     @Column
     private LocalDate endDate;
 
+    public CovidRegulation() {
+    }
+
     public CovidRegulation(int nrAllowedGuests, LocalDate startDate, LocalDate endDate) {
         this.nrAllowedGuests = nrAllowedGuests;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public long getBookingid() {
-        return bookingid;
+    public long getCovidregulationid() {
+        return covidregulationid;
     }
 
-    public void setBookingid(long bookingid) {
-        this.bookingid = bookingid;
+    public void setCovidregulationid(long covidregulationid) {
+        this.covidregulationid = covidregulationid;
     }
 
     public int getNrAllowedGuests() {
