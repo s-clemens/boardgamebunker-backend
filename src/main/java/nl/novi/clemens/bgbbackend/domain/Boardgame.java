@@ -21,7 +21,7 @@ public class Boardgame {
             strategy= GenerationType.AUTO,
             generator="native"
     )
-    @Column(columnDefinition = "serial")
+    @Column(columnDefinition = "serial", name = "id")
     private long boardgame_id;
 
     @Column
@@ -37,7 +37,7 @@ public class Boardgame {
     private String description;
 
     @OneToOne(mappedBy = "boardgame")
-    private Product boardgame_product_ref;
+    private Product product;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "boardgametype_id")
@@ -51,28 +51,28 @@ public class Boardgame {
         this.boardgame_id = boardgame_id;
     }
 
-    public int getTotalStuck() {
+    public int getTotalstock() {
         return totalstock;
     }
 
-    public void setTotalStuck(int totalStuck) {
-        this.totalstock = totalStuck;
+    public void setTotalstock(int totalstock) {
+        this.totalstock = totalstock;
     }
 
-    public int getMinPlayers() {
+    public int getMinplayers() {
         return minplayers;
     }
 
-    public void setMinPlayers(int minPlayers) {
-        this.minplayers = minPlayers;
+    public void setMinplayers(int minplayers) {
+        this.minplayers = minplayers;
     }
 
-    public int getMaxPlayers() {
+    public int getMaxplayers() {
         return maxplayers;
     }
 
-    public void setMaxPlayers(int maxPlayers) {
-        this.maxplayers = maxPlayers;
+    public void setMaxplayers(int maxplayers) {
+        this.maxplayers = maxplayers;
     }
 
     public String getDescription() {
@@ -83,12 +83,12 @@ public class Boardgame {
         this.description = description;
     }
 
-    public Product getBoardgame_product_ref() {
-        return boardgame_product_ref;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setBoardgame_product_ref(Product boardgame_product_ref) {
-        this.boardgame_product_ref = boardgame_product_ref;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public BoardgameType getBoardgametype() {

@@ -21,11 +21,14 @@ public class Consumable {
             strategy= GenerationType.AUTO,
             generator="native"
     )
-    @Column(columnDefinition = "serial")
+    @Column(columnDefinition = "serial", name = "id")
     private long consumable_id;
 
+    @Column
+    private String ingredients;
+
     @OneToOne(mappedBy = "consumable")
-    private Product consumable_product_ref;
+    private Product product;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "consumabletype_id")
@@ -39,12 +42,12 @@ public class Consumable {
         this.consumable_id = consumable_id;
     }
 
-    public Product getConsumable_product_ref() {
-        return consumable_product_ref;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setConsumable_product_ref(Product consumable_product_ref) {
-        this.consumable_product_ref = consumable_product_ref;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public ConsumableType getConsumabletype() {

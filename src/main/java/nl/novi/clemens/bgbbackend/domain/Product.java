@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,15 +22,15 @@ import java.util.Set;
 import static java.lang.Boolean.TRUE;
 
 @Entity
-@Table(name = "store_product" )
+@Table(name = "store_product")
 public class Product {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
-            generator="native"
+            strategy = GenerationType.AUTO,
+            generator = "native"
     )
-    @Column(columnDefinition = "serial")
+    @Column(columnDefinition = "serial", name = "id")
     private long productid;
 
     @Column
@@ -42,16 +43,24 @@ public class Product {
     @Lob
     private byte[] image_cover;
 
-    @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn (name = "producttype_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "producttype_id")
     private ProductType producttype;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "consumable_id", referencedColumnName = "consumable_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_consumable",
+            joinColumns =
+                    {@JoinColumn(name = "store_product", referencedColumnName = "id")},
+            inverseJoinColumns =
+                    {@JoinColumn(name = "consumable", referencedColumnName = "id")})
     private Consumable consumable;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "boardgame_id", referencedColumnName = "boardgame_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_boardgame",
+            joinColumns =
+                    {@JoinColumn(name = "store_product", referencedColumnName = "id")},
+            inverseJoinColumns =
+                    {@JoinColumn(name = "boardgame", referencedColumnName = "id")})
     private Boardgame boardgame;
 
     @OneToMany(mappedBy = "product")

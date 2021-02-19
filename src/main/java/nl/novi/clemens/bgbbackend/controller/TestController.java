@@ -1,12 +1,16 @@
 package nl.novi.clemens.bgbbackend.controller;
 
+import nl.novi.clemens.bgbbackend.payload.request.CovidRegulationRequest;
 import nl.novi.clemens.bgbbackend.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,10 +35,6 @@ public class TestController {
         return testService.generateUserContent();
     }
 
-    @GetMapping("user/boardgametypes")
-    public List infoAccess() {
-        return testService.generateBoardgameTypeContent();
-    }
 
     @GetMapping("/mod")
     public String moderatorAccess() {
@@ -45,4 +45,14 @@ public class TestController {
     public String adminAccess() {
         return testService.generateAdminContent();
     }
+
+    @PostMapping("/admin/postcovidregulation")
+    public String postCovidRegulation(@RequestBody CovidRegulationRequest covidRegulationRequest) {
+        return testService.postCovidRegulation(covidRegulationRequest); }
+
+    @GetMapping("user/boardgametypes")
+    public List infoAccess() {
+        return testService.generateBoardgameTypeContent();
+    }
+
 }
