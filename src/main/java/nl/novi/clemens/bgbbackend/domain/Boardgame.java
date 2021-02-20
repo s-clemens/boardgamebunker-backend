@@ -1,6 +1,8 @@
 package nl.novi.clemens.bgbbackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,11 +20,11 @@ public class Boardgame {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column(columnDefinition = "serial", name = "id")
-    private long boardgame_id;
+    private long boardgameid;
 
     @Column
     private int totalstock;
@@ -36,6 +38,7 @@ public class Boardgame {
     @Column
     private String description;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "boardgame")
     private Product product;
 
@@ -43,12 +46,25 @@ public class Boardgame {
     @JoinColumn(name = "boardgametype_id")
     private BoardgameType boardgametype;
 
-    public long getBoardgame_id() {
-        return boardgame_id;
+    public Boardgame() {
+
     }
 
-    public void setBoardgame_id(long boardgame_id) {
-        this.boardgame_id = boardgame_id;
+    public Boardgame(int totalstock, int minplayers, int maxplayers,
+                     String description, BoardgameType boardgametype) {
+        this.totalstock = totalstock;
+        this.minplayers = minplayers;
+        this.maxplayers = maxplayers;
+        this.description = description;
+        this.boardgametype = boardgametype;
+    }
+
+    public long getBoardgameid() {
+        return boardgameid;
+    }
+
+    public void setBoardgameid(long boardgame_id) {
+        this.boardgameid = boardgame_id;
     }
 
     public int getTotalstock() {

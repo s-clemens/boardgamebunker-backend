@@ -29,6 +29,7 @@ public class BoardgameType {
     @Enumerated(EnumType.STRING)
     private EBoardgameType name;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "boardgametype")
     private Set<Boardgame> boardgames;
 
@@ -40,7 +41,6 @@ public class BoardgameType {
         return name;
     }
 
-    @JsonIgnore
     public Set<Boardgame> getBoardgames() {
         return boardgames;
     }

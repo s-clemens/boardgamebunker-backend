@@ -1,6 +1,8 @@
 package nl.novi.clemens.bgbbackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,15 +20,16 @@ public class Consumable {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column(columnDefinition = "serial", name = "id")
-    private long consumable_id;
+    private long consumableid;
 
     @Column
     private String ingredients;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "consumable")
     private Product product;
 
@@ -34,12 +37,23 @@ public class Consumable {
     @JoinColumn(name = "consumabletype_id")
     private ConsumableType consumabletype;
 
-    public long getConsumable_id() {
-        return consumable_id;
+    public Consumable() {
+
     }
 
-    public void setConsumable_id(long consumable_id) {
-        this.consumable_id = consumable_id;
+    public Consumable(String ingredients, ConsumableType consumabletype) {
+        this.ingredients = ingredients;
+        this.consumabletype = consumabletype;
+    }
+
+
+
+    public long getConsumableid() {
+        return consumableid;
+    }
+
+    public void setConsumableid(long consumable_id) {
+        this.consumableid = consumable_id;
     }
 
     public Product getProduct() {
@@ -56,5 +70,13 @@ public class Consumable {
 
     public void setConsumabletype(ConsumableType consumabletype) {
         this.consumabletype = consumabletype;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 }

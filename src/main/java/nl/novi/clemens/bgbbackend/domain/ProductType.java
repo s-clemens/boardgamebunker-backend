@@ -1,5 +1,6 @@
 package nl.novi.clemens.bgbbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nl.novi.clemens.bgbbackend.domain.enums.EProductType;
 
 import javax.persistence.Column;
@@ -28,6 +29,7 @@ public class ProductType {
     @Enumerated(EnumType.STRING)
     private EProductType name;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "producttype")
     private Set<Product> products;
 

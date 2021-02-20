@@ -1,7 +1,5 @@
 package nl.novi.clemens.bgbbackend.domain;
 
-import com.sun.istack.Nullable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,29 +17,27 @@ import javax.persistence.Table;
 import java.sql.Blob;
 import java.util.Set;
 
-import static java.lang.Boolean.TRUE;
-
 @Entity
 @Table(name = "store_product")
 public class Product {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.AUTO,
+            strategy = GenerationType.IDENTITY,
             generator = "native"
     )
     @Column(columnDefinition = "serial", name = "id")
     private long productid;
 
     @Column
-    private String product_name;
+    private String name;
 
     @Column
     private float product_price;
 
     @Column
     @Lob
-    private byte[] image_cover;
+    private Blob image_cover;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producttype_id")
@@ -66,6 +62,17 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<BookingLine> bookinglines;
 
+    public Product() {
+
+    }
+
+    public Product(String name, float product_price, Blob image_cover, ProductType producttype) {
+        this.name = name;
+        this.product_price = product_price;
+        this.image_cover = image_cover;
+        this.producttype = producttype;
+    }
+
     public long getProductid() {
         return productid;
     }
@@ -74,12 +81,12 @@ public class Product {
         this.productid = productid;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getName() {
+        return name;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public float getProduct_price() {
@@ -90,11 +97,11 @@ public class Product {
         this.product_price = product_price;
     }
 
-    public byte[] getImage_cover() {
+    public Blob getImage_cover() {
         return image_cover;
     }
 
-    public void setImage_cover(byte[] image_cover) {
+    public void setImage_cover(Blob image_cover) {
         this.image_cover = image_cover;
     }
 

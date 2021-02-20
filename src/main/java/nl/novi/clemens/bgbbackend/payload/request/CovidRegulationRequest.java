@@ -48,6 +48,8 @@ public class CovidRegulationRequest {
         this.enddate = enddate;
     }
 
+
+    // TEMP TO STRING FOR DEBUG
     @Override
     public String toString() {
         return "CovidRegulationRequest{" +

@@ -1,5 +1,6 @@
 package nl.novi.clemens.bgbbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nl.novi.clemens.bgbbackend.domain.enums.EConsumableType;
 
 import javax.persistence.Column;
@@ -28,6 +29,7 @@ public class ConsumableType {
     @Enumerated(EnumType.STRING)
     private EConsumableType name;
 
+    @JsonIgnore
     @OneToMany (mappedBy = "consumabletype")
     private Set<Consumable> consumables;
 
