@@ -16,7 +16,7 @@ public class BoardgameResponse {
 
     private String descriptions;
 
-    private Blob coverimage;
+    private String coverimage;
 
     private float price;
 
@@ -24,7 +24,7 @@ public class BoardgameResponse {
     }
 
     public BoardgameResponse(Long id, String name, String boardgametype, int minplayers,
-                             int maxplayers, String descriptions, Blob coverimage,
+                             int maxplayers, String descriptions, String coverimage,
                              float price) {
         this.id = id;
         this.name = name;
@@ -84,11 +84,11 @@ public class BoardgameResponse {
         this.descriptions = descriptions;
     }
 
-    public Blob getCoverimage() {
+    public String getCoverimage() {
         return coverimage;
     }
 
-    public void setCoverimage(Blob coverimage) {
+    public void setCoverimage(String coverimage) {
         this.coverimage = coverimage;
     }
 

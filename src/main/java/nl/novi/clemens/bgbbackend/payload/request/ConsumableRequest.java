@@ -15,7 +15,7 @@ public class ConsumableRequest {
     @NotBlank
     private EProductType producttype;
 
-    private Blob coverimage;
+    private String coverimage;
 
     @NotBlank
     private float price;
@@ -27,7 +27,7 @@ public class ConsumableRequest {
     private EConsumableType consumabletype;
 
     public ConsumableRequest(@NotBlank String name, @NotBlank EProductType producttype,
-                             Blob coverimage, @NotBlank float price, String ingredients,
+                             String coverimage, @NotBlank float price, String ingredients,
                              @NotBlank EConsumableType consumabletype) {
         this.name = name;
         this.producttype = producttype;
@@ -53,11 +53,11 @@ public class ConsumableRequest {
         this.producttype = producttype;
     }
 
-    public Blob getCoverimage() {
+    public String getCoverimage() {
         return coverimage;
     }
 
-    public void setCoverimage(Blob coverimage) {
+    public void setCoverimage(String coverimage) {
         this.coverimage = coverimage;
     }
 

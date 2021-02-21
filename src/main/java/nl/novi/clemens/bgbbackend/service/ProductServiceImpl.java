@@ -6,12 +6,10 @@ import nl.novi.clemens.bgbbackend.domain.Consumable;
 import nl.novi.clemens.bgbbackend.domain.ConsumableType;
 import nl.novi.clemens.bgbbackend.domain.Product;
 import nl.novi.clemens.bgbbackend.domain.ProductType;
-import nl.novi.clemens.bgbbackend.domain.enums.EBoardgameType;
 import nl.novi.clemens.bgbbackend.payload.request.BoardgameRequest;
 import nl.novi.clemens.bgbbackend.payload.request.ConsumableRequest;
 import nl.novi.clemens.bgbbackend.payload.response.BoardgameResponse;
 import nl.novi.clemens.bgbbackend.payload.response.ConsumableResponse;
-import nl.novi.clemens.bgbbackend.payload.response.CovidRegulationResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.BoardgameRepository;
 import nl.novi.clemens.bgbbackend.repository.BoardgameTypeRepository;
@@ -19,7 +17,6 @@ import nl.novi.clemens.bgbbackend.repository.ConsumableRepository;
 import nl.novi.clemens.bgbbackend.repository.ConsumableTypeRepository;
 import nl.novi.clemens.bgbbackend.repository.ProductRepository;
 import nl.novi.clemens.bgbbackend.repository.ProductTypeRepository;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -27,7 +24,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.xml.bind.DatatypeConverter;
+import java.math.BigInteger;
+import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -201,7 +202,8 @@ public class ProductServiceImpl implements ProductService {
                     product.getName(),
                     consumetype,
                     consumable.getIngredients(),
-                    product.getImage_cover(),
+//                    product.getImage_cover(),
+                    null,
                     product.getProduct_price()
             ));
 
@@ -289,6 +291,7 @@ public class ProductServiceImpl implements ProductService {
             // producttype is excluded as it remains a boardgame.
             boardgame.getProduct().setName(boardgameRequest.getName());
             boardgame.getProduct().setImage_cover(boardgameRequest.getCoverimage());
+
             boardgame.getProduct().setProduct_price(boardgameRequest.getPrice());
             boardgame.setDescription(boardgameRequest.getDescription());
             boardgame.setMinplayers(boardgameRequest.getMinplayers());
@@ -313,6 +316,7 @@ public class ProductServiceImpl implements ProductService {
             // producttype is excluded as it remains a consumable.
             consumable.getProduct().setName(consumableRequest.getName());
             consumable.getProduct().setImage_cover(consumableRequest.getCoverimage());
+
             consumable.getProduct().setProduct_price(consumableRequest.getPrice());
             consumable.setIngredients(consumableRequest.getIngredients());
             consumable.setConsumabletype(consumableTypeRepository.findByName(consumableRequest.getConsumabletype()));
@@ -324,5 +328,13 @@ public class ProductServiceImpl implements ProductService {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "A matching consumable with given id (" + id + ") was not found.");
         }
+    }
+
+    private byte[] parseHex(String str) {
+        byte[] a = new BigInteger(str, 16).toByteArray();
+        if (a.length != str.length() / 2) {
+            a = Arrays.copyOfRange(a, 1, a.length);
+        }
+        return a;
     }
 }

@@ -1,5 +1,7 @@
 package nl.novi.clemens.bgbbackend.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +38,7 @@ public class Product {
     private float product_price;
 
     @Column
-    @Lob
-    private Blob image_cover;
+    private String image_cover;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producttype_id")
@@ -66,7 +67,7 @@ public class Product {
 
     }
 
-    public Product(String name, float product_price, Blob image_cover, ProductType producttype) {
+    public Product(String name, float product_price, String image_cover, ProductType producttype) {
         this.name = name;
         this.product_price = product_price;
         this.image_cover = image_cover;
@@ -97,11 +98,11 @@ public class Product {
         this.product_price = product_price;
     }
 
-    public Blob getImage_cover() {
+    public String getImage_cover() {
         return image_cover;
     }
 
-    public void setImage_cover(Blob image_cover) {
+    public void setImage_cover(String image_cover) {
         this.image_cover = image_cover;
     }
 

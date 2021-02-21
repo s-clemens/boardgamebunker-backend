@@ -8,7 +8,7 @@ public class ConsumableResponse {
     private String name;
     private String consumabletype;
     private String ingredients;
-    private Blob coverimage;
+    private String coverimage;
     private float price;
 
     public ConsumableResponse(){
@@ -16,7 +16,7 @@ public class ConsumableResponse {
     }
 
     public ConsumableResponse(Long id, String name, String consumabletype, String ingredients,
-                              Blob coverimage, float price) {
+                              String coverimage, float price) {
         this.id = id;
         this.name = name;
         this.consumabletype = consumabletype;
@@ -57,11 +57,11 @@ public class ConsumableResponse {
         this.ingredients = ingredients;
     }
 
-    public Blob getCoverimage() {
+    public String getCoverimage() {
         return coverimage;
     }
 
-    public void setCoverimage(Blob coverimage) {
+    public void setCoverimage(String coverimage) {
         this.coverimage = coverimage;
     }
 

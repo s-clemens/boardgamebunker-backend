@@ -4,7 +4,6 @@ import nl.novi.clemens.bgbbackend.domain.enums.EBoardgameType;
 import nl.novi.clemens.bgbbackend.domain.enums.EProductType;
 
 import javax.validation.constraints.NotBlank;
-import java.sql.Blob;
 
 public class BoardgameRequest {
 
@@ -15,7 +14,7 @@ public class BoardgameRequest {
     @NotBlank
     private EProductType producttype;
 
-    private Blob coverimage;
+    private String coverimage;
 
     @NotBlank
     private float price;
@@ -32,7 +31,7 @@ public class BoardgameRequest {
     private EBoardgameType boardgametype;
 
     public BoardgameRequest(@NotBlank String name, @NotBlank EProductType producttype,
-                            Blob coverimage, @NotBlank float price, String description,
+                            String coverimage, @NotBlank float price, String description,
                             @NotBlank int minplayers, @NotBlank int maxplayers,
                             @NotBlank int totalstock, @NotBlank EBoardgameType boardgametype) {
         this.name = name;
@@ -62,11 +61,11 @@ public class BoardgameRequest {
         this.producttype = producttype;
     }
 
-    public Blob getCoverimage() {
+    public String getCoverimage() {
         return coverimage;
     }
 
-    public void setCoverimage(Blob coverimage) {
+    public void setCoverimage(String coverimage) {
         this.coverimage = coverimage;
     }
 
