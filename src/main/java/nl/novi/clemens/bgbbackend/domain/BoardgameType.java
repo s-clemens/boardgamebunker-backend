@@ -44,4 +44,8 @@ public class BoardgameType {
     public Set<Boardgame> getBoardgames() {
         return boardgames;
     }
+
+    public void setName(EBoardgameType name) {
+        this.name = name;
+    }
 }

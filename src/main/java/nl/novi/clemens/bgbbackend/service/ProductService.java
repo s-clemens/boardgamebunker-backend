@@ -16,4 +16,8 @@ public interface ProductService {
     ResponseEntity<BoardgameResponse> getBoardgameById (Long id);
     ResponseEntity<ConsumableResponse> getConsumableById (Long id);
     List<BoardgameResponse> getBoardgames();
+    List<ConsumableResponse> getConsumablesSortedOnType();
+    ResponseEntity<MessageResponse> updateBoardgameById (BoardgameRequest boardgameRequest, Long id);
+    ResponseEntity<MessageResponse> updateConsumableById (ConsumableRequest consumableRequest, Long id);
+
 }

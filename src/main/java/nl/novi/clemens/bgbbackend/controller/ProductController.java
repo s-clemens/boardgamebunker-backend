@@ -9,12 +9,12 @@ import nl.novi.clemens.bgbbackend.payload.response.ConsumableResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.ProductRepository;
 import nl.novi.clemens.bgbbackend.service.ProductServiceImpl;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -84,16 +84,28 @@ public class ProductController {
     }
 
     // Get all consumables
-
-    // Get all drinks
-
-    // Get all foods
+    // copy all baordgames and adjust
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/consumable/all")
+    public List<ConsumableResponse> getConsumablesSortedOnType(){
+        return productServiceImpl.getConsumablesSortedOnType();
+    }
 
     // Update boardgame
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("/boardgame/update/{id}")
+    public ResponseEntity<MessageResponse> updateBoardgameById(@RequestBody BoardgameRequest boardgameRequest, @PathVariable Long id) {
+        return productServiceImpl.updateBoardgameById(boardgameRequest, id);
+    }
 
     // Update consumable
+    @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("/consumable/update/{id}")
+    public ResponseEntity<MessageResponse> updateConsumableById(@RequestBody ConsumableRequest consumableRequest, @PathVariable Long id) {
+        return productServiceImpl.updateConsumableById(consumableRequest, id);
+    }
 
-
-
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    // Possible to add more functionality like sorts and finds. But this should do for the main operation.
 
 }

@@ -31,11 +31,6 @@ INSERT INTO playroom(roomNr, maxGuests) VALUES('THREE', 9);
 INSERT INTO playroom(roomNr, maxGuests) VALUES('FOUR', 12);
 
 -- Het volgende werkt maar idealiter is een id nullable bij product.
-INSERT INTO consumable(consumabletype_id, ingredients) VALUES(2, 'melk');
-INSERT INTO store_product(name, product_price, image_cover, producttype_id) VALUES ('Monopoly', 4.99, null, 2);
--- INSERT INTO product_consumable(store_product, consumable) VALUES(1,1);
-
-INSERT INTO store_product(name, product_price, image_cover, producttype_id) VALUES ('Mens erger je niet', 5.66, null, 2);
 
 INSERT INTO timeslot(day, timeslot) VALUES('06-26-2020', 'EARLY_AFTERNOON');
 

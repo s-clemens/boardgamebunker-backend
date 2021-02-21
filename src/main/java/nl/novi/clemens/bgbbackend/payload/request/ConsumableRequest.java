@@ -85,16 +85,5 @@ public class ConsumableRequest {
         this.consumabletype = consumabletype;
     }
 
-    // TEMP TO STRING FOR DEBUG
-    @Override
-    public String toString() {
-        return "ConsumableRequest{" +
-                "name='" + name + '\'' +
-                ", producttype=" + producttype +
-                ", coverimage=" + coverimage +
-                ", price=" + price +
-                ", ingredients='" + ingredients + '\'' +
-                ", consumabletype=" + consumabletype +
-                '}';
-    }
+
 }

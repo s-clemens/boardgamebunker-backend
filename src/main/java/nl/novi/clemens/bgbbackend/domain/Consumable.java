@@ -79,4 +79,14 @@ public class Consumable {
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        return "Consumable{" +
+                "consumableid=" + consumableid +
+                ", ingredients='" + ingredients + '\'' +
+                ", product=" + product +
+                ", consumabletype=" + consumabletype +
+                '}';
+    }
 }

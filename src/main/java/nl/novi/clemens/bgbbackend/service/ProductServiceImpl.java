@@ -19,7 +19,9 @@ import nl.novi.clemens.bgbbackend.repository.ConsumableRepository;
 import nl.novi.clemens.bgbbackend.repository.ConsumableTypeRepository;
 import nl.novi.clemens.bgbbackend.repository.ProductRepository;
 import nl.novi.clemens.bgbbackend.repository.ProductTypeRepository;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     // AutoWires
     @Autowired
@@ -46,12 +48,46 @@ public class ProductServiceImpl implements ProductService{
     private BoardgameTypeRepository boardgameTypeRepository;
 
 
+    // Helping Methods
+
+    private String boardgameTypeToString(BoardgameType boardgametype) {
+        String gametype = null;
+
+        switch (boardgametype.getName()) {
+            case TWO_HOURS:
+                gametype = "2 hours";
+                break;
+            case THIRTY_MINUTES:
+                gametype = "30 minutes";
+                break;
+            case ONE_HOUR:
+                gametype = "1 hour";
+                break;
+        }
+        return gametype;
+    }
+
+    private String consumableTypeToString(ConsumableType consumabletype) {
+        String consumetype = null;
+
+        // Enum to frontend string
+        switch (consumabletype.getName()) {
+            case FOOD:
+                consumetype = "Eten";
+                break;
+            case DRINKS:
+                consumetype = "Drinken";
+                break;
+        }
+        return consumetype;
+    }
+
     // Methods
     @Override
     public ResponseEntity<MessageResponse> postConsumable(ConsumableRequest consumableRequest) {
 
         // Check if exists
-        if (productRepository.existsByName(consumableRequest.getName())){
+        if (productRepository.existsByName(consumableRequest.getName())) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "Product (name) already exists.");
         }
@@ -87,7 +123,7 @@ public class ProductServiceImpl implements ProductService{
     public ResponseEntity<MessageResponse> postBoardgame(BoardgameRequest boardgameRequest) {
 
         // Check if exists
-        if (productRepository.existsByName(boardgameRequest.getName())){
+        if (productRepository.existsByName(boardgameRequest.getName())) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "Product (name) already exists.");
         }
@@ -123,8 +159,8 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ResponseEntity<BoardgameResponse> getBoardgameById(Long id){
-        if (boardgameRepository.existsById(id)){
+    public ResponseEntity<BoardgameResponse> getBoardgameById(Long id) {
+        if (boardgameRepository.existsById(id)) {
 
             Boardgame boardgame = boardgameRepository.findByBoardgameid(id);
             Product product = boardgame.getProduct();
@@ -134,57 +170,49 @@ public class ProductServiceImpl implements ProductService{
             String gametype = boardgameTypeToString(boardgametype);
 
             return ResponseEntity.ok(new BoardgameResponse(
-                   boardgame.getBoardgameid(),
-                   product.getName(),
-                   gametype,
-                   boardgame.getMinplayers(),
-                   boardgame.getMaxplayers(),
-                   boardgame.getDescription(),
-                   product.getImage_cover(),
-                   product.getProduct_price()
+                    boardgame.getBoardgameid(),
+                    product.getName(),
+                    gametype,
+                    boardgame.getMinplayers(),
+                    boardgame.getMaxplayers(),
+                    boardgame.getDescription(),
+                    product.getImage_cover(),
+                    product.getProduct_price()
             ));
-        }else {
+        } else {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "A matching board game with given id (" + id + ") was not found.");
         }
     }
 
     @Override
-    public ResponseEntity<ConsumableResponse> getConsumableById(Long id){
-        if (consumableRepository.existsById(id)){
+    public ResponseEntity<ConsumableResponse> getConsumableById(Long id) {
+        if (consumableRepository.existsById(id)) {
 
             Consumable consumable = consumableRepository.findByConsumableid(id);
             Product product = consumable.getProduct();
             ConsumableType consumabletype = consumable.getConsumabletype();
 
-            String consumetype = null;
+            String consumetype = consumableTypeToString(consumabletype);
 
-            // Enum to frontend string
-            switch(consumabletype.getName()){
-                case FOOD:
-                    consumetype = "Eten";
-                    break;
-                case DRINKS:
-                    consumetype = "Drinken";
-                    break;
-            }
 
             return ResponseEntity.ok(new ConsumableResponse(
-               product.getName(),
-               consumetype,
-               consumable.getIngredients(),
-               product.getImage_cover(),
-               product.getProduct_price()
+                    consumable.getConsumableid(),
+                    product.getName(),
+                    consumetype,
+                    consumable.getIngredients(),
+                    product.getImage_cover(),
+                    product.getProduct_price()
             ));
 
-        }else {
+        } else {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "A matching consumable with given id (" + id + ") was not found.");
         }
     }
 
     @Override
-    public List<BoardgameResponse> getBoardgames(){
+    public List<BoardgameResponse> getBoardgames() {
 
         // Create blank list
         List<BoardgameResponse> boardgames = new ArrayList<BoardgameResponse>();
@@ -192,7 +220,7 @@ public class ProductServiceImpl implements ProductService{
         // Iterate over all boardgames in column
         List<Boardgame> boardgamelist = boardgameRepository.findAll();
 
-        for(int i= 0; i < boardgamelist.size(); i++){
+        for (int i = 0; i < boardgamelist.size(); i++) {
             // make response
             Boardgame boardgame = boardgamelist.get(i);
             Product product = boardgame.getProduct();
@@ -218,20 +246,83 @@ public class ProductServiceImpl implements ProductService{
         return boardgames;
     }
 
-    private String boardgameTypeToString(BoardgameType boardgametype){
-        String gametype = null;
+    @Override
+    public List<ConsumableResponse> getConsumablesSortedOnType() {
 
-        switch(boardgametype.getName()){
-            case TWO_HOURS:
-                gametype = "2 hours";
-                break;
-            case THIRTY_MINUTES:
-                gametype = "30 minutes";
-                break;
-            case ONE_HOUR:
-                gametype = "1 hour";
-                break;
+        // Create blank list
+        List<ConsumableResponse> consumables = new ArrayList<ConsumableResponse>();
+
+        // Iterate over all boardgames in column
+        List<Consumable> consumablelist = consumableRepository.findAll(Sort.by(Sort.Direction.ASC, "consumabletype"));
+//
+
+        for (int i = 0; i < consumablelist.size(); i++) {
+            Consumable consumable = consumablelist.get(i);
+            Product product = consumable.getProduct();
+            ConsumableType consumabletype = consumable.getConsumabletype();
+
+            String consumetype = consumableTypeToString(consumabletype);
+
+            ConsumableResponse response = new ConsumableResponse(
+                    consumable.getConsumableid(),
+                    product.getName(),
+                    consumetype,
+                    consumable.getIngredients(),
+                    product.getImage_cover(),
+                    product.getProduct_price()
+            );
+            System.out.println("1");
+            consumables.add(response);
+            System.out.println("2");
+
         }
-        return gametype;
+
+        return consumables;
+
+    }
+
+    @Override
+    public ResponseEntity<MessageResponse> updateBoardgameById(BoardgameRequest boardgameRequest, Long id) {
+        if (boardgameRepository.existsById(id)) {
+            Boardgame boardgame = boardgameRepository.findByBoardgameid(id);
+
+            // producttype is excluded as it remains a boardgame.
+            boardgame.getProduct().setName(boardgameRequest.getName());
+            boardgame.getProduct().setImage_cover(boardgameRequest.getCoverimage());
+            boardgame.getProduct().setProduct_price(boardgameRequest.getPrice());
+            boardgame.setDescription(boardgameRequest.getDescription());
+            boardgame.setMinplayers(boardgameRequest.getMinplayers());
+            boardgame.setMaxplayers(boardgameRequest.getMaxplayers());
+            boardgame.setTotalstock(boardgameRequest.getTotalStock());
+            boardgame.setBoardgametype(boardgameTypeRepository.findByName(boardgameRequest.getBoardgametype()));
+
+            boardgameRepository.save(boardgame);
+
+            return ResponseEntity.ok(new MessageResponse("The boardgame with ID: " + id + " was updated."));
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "A matching boardgame with given id (" + id + ") was not found.");
+        }
+    }
+
+    @Override
+    public ResponseEntity<MessageResponse> updateConsumableById(ConsumableRequest consumableRequest, Long id) {
+        if (consumableRepository.existsById(id)) {
+            Consumable consumable = consumableRepository.findByConsumableid(id);
+
+            // producttype is excluded as it remains a consumable.
+            consumable.getProduct().setName(consumableRequest.getName());
+            consumable.getProduct().setImage_cover(consumableRequest.getCoverimage());
+            consumable.getProduct().setProduct_price(consumableRequest.getPrice());
+            consumable.setIngredients(consumableRequest.getIngredients());
+            consumable.setConsumabletype(consumableTypeRepository.findByName(consumableRequest.getConsumabletype()));
+
+            consumableRepository.save(consumable);
+
+            return ResponseEntity.ok(new MessageResponse("The consumable with ID: " + id + " was updated."));
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "A matching consumable with given id (" + id + ") was not found.");
+        }
     }
 }

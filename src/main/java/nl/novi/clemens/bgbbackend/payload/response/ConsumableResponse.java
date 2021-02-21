@@ -4,6 +4,7 @@ import java.sql.Blob;
 
 public class ConsumableResponse {
 
+    private long id;
     private String name;
     private String consumabletype;
     private String ingredients;
@@ -14,13 +15,22 @@ public class ConsumableResponse {
 
     }
 
-    public ConsumableResponse(String name, String consumabletype, String ingredients,
+    public ConsumableResponse(Long id, String name, String consumabletype, String ingredients,
                               Blob coverimage, float price) {
+        this.id = id;
         this.name = name;
         this.consumabletype = consumabletype;
         this.ingredients = ingredients;
         this.coverimage = coverimage;
         this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,5 +71,16 @@ public class ConsumableResponse {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "ConsumableResponse{" +
+                "name='" + name + '\'' +
+                ", consumabletype='" + consumabletype + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", coverimage=" + coverimage +
+                ", price=" + price +
+                '}';
     }
 }
