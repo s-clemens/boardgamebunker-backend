@@ -8,6 +8,7 @@ import nl.novi.clemens.bgbbackend.payload.response.BoardgameResponse;
 import nl.novi.clemens.bgbbackend.payload.response.ConsumableResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.ProductRepository;
+import nl.novi.clemens.bgbbackend.service.ProductService;
 import nl.novi.clemens.bgbbackend.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,8 @@ public class ProductController {
     ProductServiceImpl productServiceImpl;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ProductService productService;
 
     // Post consumable
     @PreAuthorize("hasRole('ADMIN')")
@@ -45,7 +48,7 @@ public class ProductController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/postboardgame")
     public ResponseEntity<MessageResponse> postBoardgame(@RequestBody BoardgameRequest boardgameRequest){
-        return productServiceImpl.postBoardgame(boardgameRequest);
+        return productService.postBoardgame(boardgameRequest);
     }
 
     // Get all products

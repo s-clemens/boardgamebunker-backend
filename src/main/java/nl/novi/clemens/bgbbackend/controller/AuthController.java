@@ -4,7 +4,6 @@ package nl.novi.clemens.bgbbackend.controller;
 import nl.novi.clemens.bgbbackend.payload.request.LoginRequest;
 import nl.novi.clemens.bgbbackend.payload.request.SignupRequest;
 //test
-import nl.novi.clemens.bgbbackend.payload.request.TokenRequest;
 
 import nl.novi.clemens.bgbbackend.payload.response.JwtResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;

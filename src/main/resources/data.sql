@@ -30,9 +30,7 @@ INSERT INTO playroom(roomNr, maxGuests) VALUES('TWO', 6);
 INSERT INTO playroom(roomNr, maxGuests) VALUES('THREE', 9);
 INSERT INTO playroom(roomNr, maxGuests) VALUES('FOUR', 12);
 
--- Het volgende werkt maar idealiter is een id nullable bij product.
 
-INSERT INTO timeslot(day, timeslot) VALUES('06-26-2020', 'EARLY_AFTERNOON');
 
 
 

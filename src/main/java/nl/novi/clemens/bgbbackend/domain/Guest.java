@@ -32,6 +32,12 @@ public class Guest {
     @JoinColumn (name = "booking_id")
     private Booking booking;
 
+    public Guest(String name, String phoneNumber, Booking booking) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.booking = booking;
+    }
+
     public long getGuestid() {
         return guestid;
     }

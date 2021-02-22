@@ -6,9 +6,11 @@ import nl.novi.clemens.bgbbackend.payload.response.BoardgameResponse;
 import nl.novi.clemens.bgbbackend.payload.response.ConsumableResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ProductService {
 
     ResponseEntity<MessageResponse> postConsumable (ConsumableRequest consumableRequest);
