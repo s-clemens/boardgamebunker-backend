@@ -19,7 +19,7 @@ public class Playroom {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column(columnDefinition = "serial")

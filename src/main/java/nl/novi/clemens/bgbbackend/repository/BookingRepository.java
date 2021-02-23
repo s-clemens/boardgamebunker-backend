@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     Boolean existsByName(String name);
     Booking findByName(String name);
+    Booking findByBookingid(Long id);
 }

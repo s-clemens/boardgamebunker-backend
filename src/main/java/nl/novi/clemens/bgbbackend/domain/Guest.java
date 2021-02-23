@@ -1,5 +1,7 @@
 package nl.novi.clemens.bgbbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,9 +16,10 @@ import javax.persistence.Table;
 @Table (name = "guest")
 public class Guest {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column(columnDefinition = "serial")
@@ -28,9 +31,12 @@ public class Guest {
     @Column
     private String phoneNumber;
 
+    @JsonIgnore
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "booking_id")
     private Booking booking;
+
+    public Guest(){};
 
     public Guest(String name, String phoneNumber, Booking booking) {
         this.name = name;

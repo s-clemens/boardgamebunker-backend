@@ -22,7 +22,7 @@ public class Booking {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column (columnDefinition = "serial")
@@ -53,6 +53,8 @@ public class Booking {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "user_id")
     private User user;
+
+    public Booking(){};
 
     public Booking(String name, LocalDate bookingdate, ETimeslot timeslot, Boolean isCancelled, User owner) {
         this.name = name;

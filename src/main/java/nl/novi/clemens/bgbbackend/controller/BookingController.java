@@ -1,18 +1,22 @@
 package nl.novi.clemens.bgbbackend.controller;
 
 import nl.novi.clemens.bgbbackend.payload.request.BookingRequest;
+import nl.novi.clemens.bgbbackend.payload.response.AllBookingResponse;
+import nl.novi.clemens.bgbbackend.payload.response.BookingResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.service.BookingService;
-import nl.novi.clemens.bgbbackend.service.BookingServiceImpl;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -33,8 +37,18 @@ public class BookingController {
     }
 
     // Get all bookings
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/all")
+    public ResponseEntity<AllBookingResponse> getAllBookings(){
+        return bookingService.getAllBookings();
+    }
 
     // Get booking by id
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/{id}")
+    public ResponseEntity<BookingResponse> getBookingById(@PathVariable Long id){
+        return bookingService.getBookingById(id);
+    }
 
     // Get Owned Booking by id
 

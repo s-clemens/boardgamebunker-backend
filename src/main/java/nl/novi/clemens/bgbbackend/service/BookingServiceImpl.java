@@ -4,9 +4,10 @@ import nl.novi.clemens.bgbbackend.domain.Booking;
 import nl.novi.clemens.bgbbackend.domain.BookingLine;
 import nl.novi.clemens.bgbbackend.domain.Guest;
 import nl.novi.clemens.bgbbackend.domain.Playroom;
-import nl.novi.clemens.bgbbackend.payload.request.BookingLineRequest;
 import nl.novi.clemens.bgbbackend.payload.request.BookingRequest;
-import nl.novi.clemens.bgbbackend.payload.request.GuestRequest;
+import nl.novi.clemens.bgbbackend.payload.response.AllBookingResponse;
+import nl.novi.clemens.bgbbackend.payload.response.BookingLineResponse;
+import nl.novi.clemens.bgbbackend.payload.response.BookingResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.BookingLineRepository;
 import nl.novi.clemens.bgbbackend.repository.BookingRepository;
@@ -126,5 +127,94 @@ public class BookingServiceImpl implements BookingService{
         return ResponseEntity.ok(new MessageResponse("Booking was successful!"));
     }
 
+    @Override
+    public ResponseEntity<AllBookingResponse> getAllBookings(){
+
+        // Make list for allbookingsresponse
+        List<BookingResponse> bookingResponses = new ArrayList<>();
+
+        // For every booking in findall:
+        List<Booking> bookings = bookingRepository.findAll();
+
+        for (int i = 0; i < bookings.size(); i++) {
+            // Make as many bookinglineresponses as needed
+            List<BookingLine> bookingLines = bookings.get(i).getBookinglines();
+            List<BookingLineResponse> bookingLineResponses = new ArrayList<BookingLineResponse>();
+            for (int j = 0; j < bookingLines.size(); j++) {
+                BookingLineResponse bookingLineResponse = new BookingLineResponse(
+                        bookingLines.get(j).getProduct().getName(),
+                        (int)bookingLines.get(j).getProduct().getProductid(),
+                        bookingLines.get(j).getProduct().getProducttype().getName().name(),
+                        bookingLines.get(j).getNumberofItems(),
+                        bookingLines.get(j).getProduct().getImage_cover(),
+                        bookingLines.get(j).getProduct().getProduct_price()
+                );
+                //Add to bookinglinelist
+                bookingLineResponses.add(bookingLineResponse);
+            }
+            // Make a bookingresponse
+            BookingResponse bookingResponse = new BookingResponse(
+                    bookings.get(i).getName(),
+                    bookings.get(i).getUser().getId(),
+                    bookings.get(i).getUser().getUsername(),
+                    bookings.get(i).getCancelled(),
+                    bookings.get(i).getPlayroom().getRoomNr().name(),
+                    bookings.get(i).getBookingdate().toString(),
+                    bookings.get(i).getTimeslot().name(),
+                    bookings.get(i).getGuests().toArray(new Guest[0]),
+                    bookingLineResponses
+            );
+            // Add Bookingresponse to List
+            bookingResponses.add(bookingResponse);
+            }
+
+        // Turn list into array for transmitting
+        AllBookingResponse allBookingResponse = new AllBookingResponse(
+                bookingResponses
+        );
+
+        return ResponseEntity.ok(allBookingResponse);
+        }
+
+
+    @Override
+    public ResponseEntity<BookingResponse> getBookingById(Long id){
+        if (bookingRepository.existsById(id)){
+            Booking booking = bookingRepository.findByBookingid(id);
+
+            List<BookingLine> bookingLines = booking.getBookinglines();
+            List<BookingLineResponse> bookingLineResponses = new ArrayList<BookingLineResponse>();
+            for (int j = 0; j < bookingLines.size(); j++) {
+                BookingLineResponse bookingLineResponse = new BookingLineResponse(
+                        bookingLines.get(j).getProduct().getName(),
+                        (int)bookingLines.get(j).getProduct().getProductid(),
+                        bookingLines.get(j).getProduct().getProducttype().getName().name(),
+                        bookingLines.get(j).getNumberofItems(),
+                        bookingLines.get(j).getProduct().getImage_cover(),
+                        bookingLines.get(j).getProduct().getProduct_price()
+                );
+                //Add to bookinglinelist
+                bookingLineResponses.add(bookingLineResponse);
+            }
+            // Make a bookingresponse
+            BookingResponse bookingResponse = new BookingResponse(
+                    booking.getName(),
+                    booking.getUser().getId(),
+                    booking.getUser().getUsername(),
+                    booking.getCancelled(),
+                    booking.getPlayroom().getRoomNr().name(),
+                    booking.getBookingdate().toString(),
+                    booking.getTimeslot().name(),
+                    booking.getGuests().toArray(new Guest[0]),
+                    bookingLineResponses
+            );
+
+            return ResponseEntity.ok(bookingResponse);
+
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "A matching booking with given id (" + id + ") was not found.");
+        }
+    }
 
 }

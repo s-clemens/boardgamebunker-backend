@@ -19,7 +19,7 @@ public class BookingLine {
 
     @Id
     @GeneratedValue(
-            strategy= GenerationType.AUTO,
+            strategy= GenerationType.IDENTITY,
             generator="native"
     )
     @Column(columnDefinition = "serial")
@@ -34,6 +34,8 @@ public class BookingLine {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "booking_id")
     private Booking booking;
+
+    public BookingLine(){};
 
     public BookingLine(int numberofItems, Product product, Booking booking) {
         this.numberofItems = numberofItems;
