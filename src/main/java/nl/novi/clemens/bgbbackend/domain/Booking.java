@@ -136,4 +136,6 @@ public class Booking {
     public void setTimeslot(ETimeslot timeslot) {
         this.timeslot = timeslot;
     }
+
+
 }

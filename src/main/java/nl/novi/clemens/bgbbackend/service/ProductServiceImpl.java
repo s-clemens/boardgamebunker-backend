@@ -51,24 +51,24 @@ public class ProductServiceImpl implements ProductService {
 
     // Helping Methods
 
-    private String boardgameTypeToString(BoardgameType boardgametype) {
+    public String boardgameTypeToString(BoardgameType boardgametype) {
         String gametype = null;
 
         switch (boardgametype.getName()) {
             case TWO_HOURS:
-                gametype = "2 hours";
+                gametype = "2 uur";
                 break;
             case THIRTY_MINUTES:
-                gametype = "30 minutes";
+                gametype = "30 minuten";
                 break;
             case ONE_HOUR:
-                gametype = "1 hour";
+                gametype = "1 uur";
                 break;
         }
         return gametype;
     }
 
-    private String consumableTypeToString(ConsumableType consumabletype) {
+    public String consumableTypeToString(ConsumableType consumabletype) {
         String consumetype = null;
 
         // Enum to frontend string

@@ -1,6 +1,7 @@
 package nl.novi.clemens.bgbbackend.service;
 
 import nl.novi.clemens.bgbbackend.domain.CovidRegulation;
+import nl.novi.clemens.bgbbackend.payload.request.AllowedGuestsRequest;
 import nl.novi.clemens.bgbbackend.payload.request.CovidRegulationRequest;
 import nl.novi.clemens.bgbbackend.payload.response.CovidRegulationResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
@@ -24,31 +25,31 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
     }
 
     // Checks whether dates interfere with already existing regulations.
-    private Boolean areDatesValid(LocalDate startdate, LocalDate enddate, List<CovidRegulation> existingRegulations){
+    private Boolean areDatesValid(LocalDate startdate, LocalDate enddate, List<CovidRegulation> existingRegulations) {
 
         Boolean isValid = true;
 
-        for(int i = 0; i < existingRegulations.size(); i++){
+        for (int i = 0; i < existingRegulations.size(); i++) {
             LocalDate existingstartdate = existingRegulations.get(i).getStartDate();
             LocalDate existingenddate = existingRegulations.get(i).getEndDate();
-            if (enddate.isBefore(existingenddate) && startdate.isAfter(existingstartdate)){
+            if (enddate.isBefore(existingenddate) && startdate.isAfter(existingstartdate)) {
                 isValid = false;
                 break;
             }
-            if (enddate.isAfter(existingstartdate) && startdate.isBefore(existingstartdate)){
+            if (enddate.isAfter(existingstartdate) && startdate.isBefore(existingstartdate)) {
                 isValid = false;
                 break;
             }
-            if (enddate.isAfter(existingenddate) && startdate.isBefore(existingenddate)){
+            if (enddate.isAfter(existingenddate) && startdate.isBefore(existingenddate)) {
                 isValid = false;
                 break;
             }
-            if (enddate.isEqual(existingenddate) && startdate.isEqual(existingstartdate)){
+            if (enddate.isEqual(existingenddate) && startdate.isEqual(existingstartdate)) {
                 isValid = false;
                 break;
             }
             if (enddate.isEqual(existingenddate) || enddate.isEqual(existingstartdate) ||
-                    startdate.isEqual(existingstartdate) || startdate.isEqual(existingenddate)){
+                    startdate.isEqual(existingstartdate) || startdate.isEqual(existingenddate)) {
                 isValid = false;
                 break;
             }
@@ -73,7 +74,7 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
         }
 
         // Check if selected dates are not interfering with already existing dates.
-        if (!areDatesValid(covidRegulationRequest.getStartdate(), covidRegulationRequest.getEnddate(), covidRegulationRepository.findAll())){
+        if (!areDatesValid(covidRegulationRequest.getStartdate(), covidRegulationRequest.getEnddate(), covidRegulationRepository.findAll())) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "There already is a regulation that overlaps with your selection of dates.");
         }
@@ -88,7 +89,8 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
         return ResponseEntity.ok(new MessageResponse("Covid regulation added successfully!"));
     }
 
-    public ResponseEntity<CovidRegulationResponse> findByCovidregulationid(long id){
+    @Override
+    public ResponseEntity<CovidRegulationResponse> findByCovidregulationid(long id) {
         try {
             CovidRegulation regulationMatch = covidRegulationRepository.findByCovidregulationid(id);
 
@@ -107,18 +109,35 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
     }
 
     @Override
-    public ResponseEntity<MessageResponse> deleteCovidRegulationByID(long id){
+    public ResponseEntity<Boolean> checkNrAllowedGuests(AllowedGuestsRequest allowedGuestsRequest) {
+        List<CovidRegulation> regulations = covidRegulationRepository.findAll();
+
+        for (int i = 0; i < regulations.size(); i++) {
+            if (regulations.get(i).getStartDate().isBefore(allowedGuestsRequest.getBookingdate())
+                    && regulations.get(i).getEndDate().isAfter(allowedGuestsRequest.getBookingdate())) {
+                if (regulations.get(i).getNrAllowedGuests() <= allowedGuestsRequest.getNumberofguests()) {
+                    return ResponseEntity.ok(false);
+                }
+            }
+        }
+        return ResponseEntity.ok(true);
+    }
+
+
+    @Override
+    public ResponseEntity<MessageResponse> deleteCovidRegulationByID(long id) {
 
         if (covidRegulationRepository.existsById(id)) {
             covidRegulationRepository.deleteById(id);
-            return  ResponseEntity.ok(new MessageResponse("The covid regulation with ID: " + id + " was deleted."));
+            return ResponseEntity.ok(new MessageResponse("The covid regulation with ID: " + id + " was deleted."));
         } else {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "A matching covid regulation with given id (" + id + ") was not found.");
         }
     }
 
-    public ResponseEntity<MessageResponse> updateCovidRegulationByID(CovidRegulationRequest covidRegulationRequest, long id){
+    @Override
+    public ResponseEntity<MessageResponse> updateCovidRegulationByID(CovidRegulationRequest covidRegulationRequest, long id) {
         if (covidRegulationRepository.existsById(id)) {
             CovidRegulation covidRegulation = covidRegulationRepository.findByCovidregulationid(id);
 
@@ -134,7 +153,8 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
                     HttpStatus.NOT_FOUND, "A matching covid regulation with given id (" + id + ") was not found.");
         }
     }
-
 }
+
+
 
 

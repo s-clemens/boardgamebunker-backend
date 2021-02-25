@@ -1,10 +1,12 @@
 package nl.novi.clemens.bgbbackend.controller;
 
 import nl.novi.clemens.bgbbackend.domain.CovidRegulation;
+import nl.novi.clemens.bgbbackend.payload.request.AllowedGuestsRequest;
 import nl.novi.clemens.bgbbackend.payload.request.CovidRegulationRequest;
 import nl.novi.clemens.bgbbackend.payload.response.CovidRegulationResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.CovidRegulationRepository;
+import nl.novi.clemens.bgbbackend.service.CovidRegulationService;
 import nl.novi.clemens.bgbbackend.service.CovidRegulationServiceImpl;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ import java.util.List;
 public class CovidRegulationController {
 
     @Autowired
-    CovidRegulationServiceImpl covidRegulationServiceImpl;
+    CovidRegulationServiceImpl covidRegulationService;
 
     @Autowired
     CovidRegulationRepository covidRegulationRepository;
@@ -39,13 +41,13 @@ public class CovidRegulationController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/postcovidregulation")
     public ResponseEntity<MessageResponse> postCovidRegulation(@RequestBody CovidRegulationRequest covidRegulationRequest) {
-        return covidRegulationServiceImpl.postCovidRegulation(covidRegulationRequest);
+        return covidRegulationService.postCovidRegulation(covidRegulationRequest);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deletecovidregulation/{id}")
     public ResponseEntity<MessageResponse> deleteCovidRegulationByID(@PathVariable long id) {
-        return covidRegulationServiceImpl.deleteCovidRegulationByID(id);
+        return covidRegulationService.deleteCovidRegulationByID(id);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -57,13 +59,20 @@ public class CovidRegulationController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/getcovidregulation/{id}")
     public ResponseEntity<CovidRegulationResponse> getCovidRegulationByID(@PathVariable long id) {
-        return covidRegulationServiceImpl.findByCovidregulationid(id);
+        return covidRegulationService.findByCovidregulationid(id);
     }
 
     // Update regulation
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/updatecovidregulation/{id}")
     public ResponseEntity<MessageResponse> updateCovidRegulationByID(@RequestBody CovidRegulationRequest covidRegulationRequest, @PathVariable long id) {
-        return covidRegulationServiceImpl.updateCovidRegulationByID(covidRegulationRequest, id);
+        return covidRegulationService.updateCovidRegulationByID(covidRegulationRequest, id);
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/user/checkguestsallowed")
+    public ResponseEntity<Boolean> checkNrAllowedGuests(@RequestBody AllowedGuestsRequest allowedGuestsRequest){
+        return covidRegulationService.checkNrAllowedGuests(allowedGuestsRequest);
+    }
+
 }
