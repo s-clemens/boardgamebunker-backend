@@ -116,4 +116,19 @@ public class BoardgameRequest {
     public void setBoardgametype(EBoardgameType boardgametype) {
         this.boardgametype = boardgametype;
     }
+
+    @Override
+    public String toString() {
+        return "BoardgameRequest{" +
+                "name='" + name + '\'' +
+                ", producttype=" + producttype +
+                ", coverimage='" + coverimage + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", minplayers=" + minplayers +
+                ", maxplayers=" + maxplayers +
+                ", totalstock=" + totalstock +
+                ", boardgametype=" + boardgametype +
+                '}';
+    }
 }

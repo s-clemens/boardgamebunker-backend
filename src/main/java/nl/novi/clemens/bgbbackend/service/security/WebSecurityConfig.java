@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
+                .antMatchers("/api/**").permitAll()
                 // De rest moet je voor authenticaten.
                 .anyRequest().authenticated();
         // permit all staan ze open, als je token meestuurt kun je bij niet permit all erbij.

@@ -37,8 +37,8 @@ public class Product {
     @Column
     private float product_price;
 
-    @Column
-    private String image_cover;
+    @Column (length = 200000)
+    private String imagecover;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producttype_id")
@@ -70,7 +70,7 @@ public class Product {
     public Product(String name, float product_price, String image_cover, ProductType producttype) {
         this.name = name;
         this.product_price = product_price;
-        this.image_cover = image_cover;
+        this.imagecover = image_cover;
         this.producttype = producttype;
     }
 
@@ -99,11 +99,11 @@ public class Product {
     }
 
     public String getImage_cover() {
-        return image_cover;
+        return imagecover;
     }
 
     public void setImage_cover(String image_cover) {
-        this.image_cover = image_cover;
+        this.imagecover = image_cover;
     }
 
     public ProductType getProducttype() {
