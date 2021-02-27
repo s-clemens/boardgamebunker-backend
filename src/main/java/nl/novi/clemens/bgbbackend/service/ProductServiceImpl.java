@@ -123,12 +123,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<MessageResponse> postBoardgame(BoardgameRequest boardgameRequest) {
 
-        System.out.println(boardgameRequest);
+
 
         // Check if exists
         if (productRepository.existsByName(boardgameRequest.getName())) {
             throw new ResponseStatusException(
-                    HttpStatus.NOT_ACCEPTABLE, "Product (name) already exists.");
+                    HttpStatus.FORBIDDEN, "Product (name) already exists.");
         }
 
         // Get Producttype instance
