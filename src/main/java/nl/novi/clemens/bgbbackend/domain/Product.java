@@ -133,5 +133,4 @@ public class Product {
     public void setBookinglines(Set<BookingLine> bookinglines) {
         this.bookinglines = bookinglines;
     }
-
 }

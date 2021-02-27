@@ -3,8 +3,8 @@ package nl.novi.clemens.bgbbackend.payload.request;
 import java.time.LocalDate;
 
 public class GuestlistRequest {
-    private LocalDate requestdate;
 
+    private LocalDate requestdate;
 
     public GuestlistRequest(){};
 

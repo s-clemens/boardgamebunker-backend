@@ -10,7 +10,6 @@ public class ConsumableResponse {
     private float price;
 
     public ConsumableResponse(){
-
     }
 
     public ConsumableResponse(Long id, String name, String consumabletype, String ingredients,
@@ -69,16 +68,5 @@ public class ConsumableResponse {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "ConsumableResponse{" +
-                "name='" + name + '\'' +
-                ", consumabletype='" + consumabletype + '\'' +
-                ", ingredients='" + ingredients + '\'' +
-                ", coverimage=" + coverimage +
-                ", price=" + price +
-                '}';
     }
 }

@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CovidRegulationRepository extends JpaRepository<CovidRegulation, Long> {
 
-
     CovidRegulation findByCovidregulationid(long id);
 
 }

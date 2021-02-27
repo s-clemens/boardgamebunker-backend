@@ -109,5 +109,4 @@ public class UserDetailsImpl implements UserDetails {
         return Objects.hash(id, username, email, password, authorities);
     }
 
-
 }

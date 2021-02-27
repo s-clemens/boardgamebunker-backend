@@ -7,7 +7,6 @@ import nl.novi.clemens.bgbbackend.payload.response.ConsumableResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

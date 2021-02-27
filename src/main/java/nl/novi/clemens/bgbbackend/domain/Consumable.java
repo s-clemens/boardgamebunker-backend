@@ -36,15 +36,12 @@ public class Consumable {
     private ConsumableType consumabletype;
 
     public Consumable() {
-
     }
 
     public Consumable(String ingredients, ConsumableType consumabletype) {
         this.ingredients = ingredients;
         this.consumabletype = consumabletype;
     }
-
-
 
     public long getConsumableid() {
         return consumableid;
@@ -76,15 +73,5 @@ public class Consumable {
 
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
-    }
-
-    @Override
-    public String toString() {
-        return "Consumable{" +
-                "consumableid=" + consumableid +
-                ", ingredients='" + ingredients + '\'' +
-                ", product=" + product +
-                ", consumabletype=" + consumabletype +
-                '}';
     }
 }

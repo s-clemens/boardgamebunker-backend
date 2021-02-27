@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -57,7 +56,6 @@ public class CovidRegulationController {
         return covidRegulationService.findByCovidregulationid(id);
     }
 
-    // Update regulation
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/updatecovidregulation/{id}")
     public ResponseEntity<MessageResponse> updateCovidRegulationByID(@RequestBody CovidRegulationRequest covidRegulationRequest, @PathVariable long id) {

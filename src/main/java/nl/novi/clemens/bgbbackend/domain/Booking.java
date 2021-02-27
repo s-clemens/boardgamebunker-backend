@@ -110,7 +110,6 @@ public class Booking {
         this.guests = guests;
     }
 
-
     public User getUser() {
         return user;
     }
@@ -134,6 +133,5 @@ public class Booking {
     public void setTimeslot(ETimeslot timeslot) {
         this.timeslot = timeslot;
     }
-
 
 }

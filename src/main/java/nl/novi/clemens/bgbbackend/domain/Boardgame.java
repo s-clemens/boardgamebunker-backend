@@ -45,7 +45,6 @@ public class Boardgame {
     private BoardgameType boardgametype;
 
     public Boardgame() {
-
     }
 
     public Boardgame(int totalstock, int minplayers, int maxplayers,

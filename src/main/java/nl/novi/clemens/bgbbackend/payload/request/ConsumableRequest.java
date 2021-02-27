@@ -82,6 +82,4 @@ public class ConsumableRequest {
     public void setConsumabletype(EConsumableType consumabletype) {
         this.consumabletype = consumabletype;
     }
-
-
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class GLTimeslotResponse {
 
-
     private String timeslot;
 
     private List<GLPlayroomResponse> glPlayroomResponses;

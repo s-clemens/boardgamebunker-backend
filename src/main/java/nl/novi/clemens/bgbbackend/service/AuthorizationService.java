@@ -5,7 +5,6 @@ import nl.novi.clemens.bgbbackend.domain.Role;
 import nl.novi.clemens.bgbbackend.domain.User;
 import nl.novi.clemens.bgbbackend.payload.request.LoginRequest;
 import nl.novi.clemens.bgbbackend.payload.request.SignupRequest;
-import nl.novi.clemens.bgbbackend.payload.request.TokenRequest;
 import nl.novi.clemens.bgbbackend.payload.response.JwtResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.RoleRepository;
@@ -115,18 +114,6 @@ public class AuthorizationService {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-    /**
-     * Deze methode controleert de ontvangen username en wachtwoord. Het gebruikt hiervoor de
-     * AuthenticationManager. I.a.w. Spring security doet die allemaal voor ons.
-     *
-     * Wanneer de gebruikersnaam/wachtwoord combinatie niet klopt, wordt er een Runtime exception gegooid:
-     * 401 Unauthorized. Deze wordt gegooid door
-     * {@link nl.novi.clemens.bgbbackend.service.security.jwt.AuthEntryPointJwt}
-     *
-     *
-     * @param loginRequest De payload met username en password.
-     * @return een HTTP-response met daarin de JWT-token.
-     */
     public ResponseEntity<JwtResponse> authenticateUser(@Valid LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -149,23 +136,17 @@ public class AuthorizationService {
                 roles));
     }
 
-    public ResponseEntity<JwtResponse> authenticateUserByToken(@Valid TokenRequest tokenRequest) {
+    public ResponseEntity<User> authenticateUserByToken() {
 
+        // Validate token
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        // Username extract
-        String username = jwtUtils.getUserNameFromJwtToken(tokenRequest.getTokenString());
+        User user = userRepository.findByUsername(currentPrincipalName);
 
-        // Get user instantie
-        User tokenUser =  userRepository.findByUsername(username);
-
-        // Make token voor authenticateUser
-        String password = tokenUser.getPassword();
-
-        LoginRequest loginRequest = null;
-        loginRequest.setPassword(password);
-        loginRequest.setUsername(username);
-
-        //userinfo via user instantie
-        return authenticateUser(loginRequest);
+        return ResponseEntity.ok(user);
     }
+
+
+
 }

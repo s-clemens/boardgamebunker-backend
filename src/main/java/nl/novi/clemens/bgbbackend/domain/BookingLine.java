@@ -72,5 +72,3 @@ public class BookingLine {
         this.booking = booking;
     }
 }
-
-

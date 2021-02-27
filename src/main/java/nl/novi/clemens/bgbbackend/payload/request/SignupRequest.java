@@ -7,11 +7,9 @@ import java.util.Set;
 
 public class SignupRequest {
 
-    @NotBlank
     @Size(min = 3, max = 20)
     private String username;
 
-    @NotBlank
     @Size(max = 50)
     @Email
     private String email;
@@ -21,7 +19,6 @@ public class SignupRequest {
     @Size(min = 10)
     private String phonenumber;
 
-    @NotBlank
     @Size(min = 6, max = 40)
     private String password;
 

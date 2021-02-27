@@ -2,7 +2,6 @@ package nl.novi.clemens.bgbbackend.payload.request;
 
 import nl.novi.clemens.bgbbackend.domain.enums.EBoardgameType;
 import nl.novi.clemens.bgbbackend.domain.enums.EProductType;
-
 import javax.validation.constraints.NotBlank;
 
 public class BoardgameRequest {
@@ -115,20 +114,5 @@ public class BoardgameRequest {
 
     public void setBoardgametype(EBoardgameType boardgametype) {
         this.boardgametype = boardgametype;
-    }
-
-    @Override
-    public String toString() {
-        return "BoardgameRequest{" +
-                "name='" + name + '\'' +
-                ", producttype=" + producttype +
-                ", coverimage='" + coverimage + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", minplayers=" + minplayers +
-                ", maxplayers=" + maxplayers +
-                ", totalstock=" + totalstock +
-                ", boardgametype=" + boardgametype +
-                '}';
     }
 }

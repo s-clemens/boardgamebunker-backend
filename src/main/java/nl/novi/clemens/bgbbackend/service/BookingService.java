@@ -10,7 +10,6 @@ import nl.novi.clemens.bgbbackend.payload.response.GuestlistResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import javax.validation.Valid;
 
 @Service
@@ -25,7 +24,5 @@ public interface BookingService {
     ResponseEntity<MessageResponse> cancelBookingById(Long bookingid);
     ResponseEntity<MessageResponse> cancelOwnedBookingById(Long bookingid);
     ResponseEntity<GuestlistResponse> getGuestlistFromDayBasedOnTimeslotsAndRoom(GuestlistRequest guestlistRequest);
-
-
 
 }

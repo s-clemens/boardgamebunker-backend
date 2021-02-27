@@ -29,7 +29,6 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    // AutoWires
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -45,7 +44,6 @@ public class ProductServiceImpl implements ProductService {
 
 
     // Helping Methods
-
     public String boardgameTypeToString(BoardgameType boardgametype) {
         String gametype = null;
 
@@ -117,8 +115,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ResponseEntity<MessageResponse> postBoardgame(BoardgameRequest boardgameRequest) {
-
-
 
         // Check if exists
         if (productRepository.existsByName(boardgameRequest.getName())) {
@@ -253,7 +249,6 @@ public class ProductServiceImpl implements ProductService {
 
         // Iterate over all boardgames in column
         List<Consumable> consumablelist = consumableRepository.findAll(Sort.by(Sort.Direction.ASC, "consumabletype"));
-//
 
         for (int i = 0; i < consumablelist.size(); i++) {
             Consumable consumable = consumablelist.get(i);
@@ -273,11 +268,8 @@ public class ProductServiceImpl implements ProductService {
             System.out.println("1");
             consumables.add(response);
             System.out.println("2");
-
         }
-
         return consumables;
-
     }
 
     @Override
@@ -326,5 +318,4 @@ public class ProductServiceImpl implements ProductService {
                     HttpStatus.NOT_FOUND, "A matching consumable with given id (" + id + ") was not found.");
         }
     }
-
 }

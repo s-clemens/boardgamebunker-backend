@@ -68,7 +68,6 @@ public class BookingRequest {
         this.timeslot = timeslot;
     }
 
-
     public Long getPlayroomid() {
         return playroomid;
     }

@@ -314,9 +314,7 @@ public class BookingServiceImpl implements BookingService{
         return ResponseEntity.ok(guestlistResponse);
     }
 
-
     // Helper Methods
-
     public AvailableTimeSlotsResponse checkTimeslotAvailabilityOnDate(List<Booking> bookings, LocalDate date){
         // Checks whats timeslots are available based on existing bookings (Excl. canceled booking)
         AvailableTimeSlotsResponse availableTimeSlotsResponse = new AvailableTimeSlotsResponse(
@@ -397,5 +395,4 @@ public class BookingServiceImpl implements BookingService{
 
         return ResponseEntity.ok(allBookingResponse);
     }
-
 }

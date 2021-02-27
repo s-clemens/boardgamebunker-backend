@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class AvailableTimeSlotRequest {
     private LocalDate bookingdate;
 
-
     public AvailableTimeSlotRequest(){};
 
     public AvailableTimeSlotRequest(LocalDate bookingdate) {

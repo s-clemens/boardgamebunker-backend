@@ -123,7 +123,6 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
         return ResponseEntity.ok(true);
     }
 
-
     @Override
     public ResponseEntity<MessageResponse> deleteCovidRegulationByID(long id) {
 
@@ -154,7 +153,3 @@ public class CovidRegulationServiceImpl implements CovidRegulationService {
         }
     }
 }
-
-
-
-

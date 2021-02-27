@@ -43,15 +43,4 @@ public class CovidRegulationRequest {
     public void setEnddate(LocalDate enddate) {
         this.enddate = enddate;
     }
-
-
-    // TEMP TO STRING FOR DEBUG
-    @Override
-    public String toString() {
-        return "CovidRegulationRequest{" +
-                "nrallowedguests=" + nrallowedguests +
-                ", startdate=" + startdate +
-                ", enddate=" + enddate +
-                '}';
-    }
 }

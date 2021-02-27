@@ -15,5 +15,3 @@ public interface CovidRegulationService {
     ResponseEntity<Boolean> checkNrAllowedGuests (AllowedGuestsRequest allowedGuestsRequest);
 
 }
-
-

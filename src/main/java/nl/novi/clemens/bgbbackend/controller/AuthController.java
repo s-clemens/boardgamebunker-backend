@@ -1,5 +1,6 @@
 package nl.novi.clemens.bgbbackend.controller;
 
+import nl.novi.clemens.bgbbackend.domain.User;
 import nl.novi.clemens.bgbbackend.payload.request.LoginRequest;
 import nl.novi.clemens.bgbbackend.payload.request.SignupRequest;
 import nl.novi.clemens.bgbbackend.payload.response.JwtResponse;
@@ -33,5 +34,9 @@ public class AuthController {
         return authorizationService.registerUser(signUpRequest);
     }
 
+    @GetMapping("/token-check")
+    public ResponseEntity<User> tokenCheckUser(){
+        return authorizationService.authenticateUserByToken();
+    }
 }
 
