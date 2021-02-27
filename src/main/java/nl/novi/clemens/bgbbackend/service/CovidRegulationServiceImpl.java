@@ -17,14 +17,10 @@ import java.util.List;
 @Service
 public class CovidRegulationServiceImpl implements CovidRegulationService {
 
+    @Autowired
     private CovidRegulationRepository covidRegulationRepository;
 
-    @Autowired
-    public void setCovidRegulationRepository(CovidRegulationRepository covidRegulationRepository) {
-        this.covidRegulationRepository = covidRegulationRepository;
-    }
 
-    // Checks whether dates interfere with already existing regulations.
     private Boolean areDatesValid(LocalDate startdate, LocalDate enddate, List<CovidRegulation> existingRegulations) {
 
         Boolean isValid = true;

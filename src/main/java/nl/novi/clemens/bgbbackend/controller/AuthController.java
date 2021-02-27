@@ -39,4 +39,3 @@ public class AuthController {
         return authorizationService.authenticateUserByToken();
     }
 }
-

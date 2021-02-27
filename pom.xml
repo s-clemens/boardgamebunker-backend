@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>nl.novi.clemens</groupId>
 	<artifactId>bgb-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.9</version>
 	<name>bgb-backend</name>
 	<description>Backend for the BGB application</description>
 	<properties>

@@ -42,8 +42,6 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private BoardgameTypeRepository boardgameTypeRepository;
 
-
-    // Helping Methods
     public String boardgameTypeToString(BoardgameType boardgametype) {
         String gametype = null;
 
@@ -76,7 +74,6 @@ public class ProductServiceImpl implements ProductService {
         return consumetype;
     }
 
-    // Methods
     @Override
     public ResponseEntity<MessageResponse> postConsumable(ConsumableRequest consumableRequest) {
 
