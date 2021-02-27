@@ -1,6 +1,5 @@
 package nl.novi.clemens.bgbbackend.payload.response;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class GLTimeslotResponse {

@@ -6,7 +6,6 @@ import nl.novi.clemens.bgbbackend.payload.request.GuestlistRequest;
 import nl.novi.clemens.bgbbackend.payload.response.AllBookingResponse;
 import nl.novi.clemens.bgbbackend.payload.response.AvailableTimeSlotsResponse;
 import nl.novi.clemens.bgbbackend.payload.response.BookingResponse;
-import nl.novi.clemens.bgbbackend.payload.response.GLTimeslotResponse;
 import nl.novi.clemens.bgbbackend.payload.response.GuestlistResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ public interface BookingService {
     ResponseEntity<MessageResponse> postBooking(@Valid BookingRequest bookingRequest);
     ResponseEntity<AllBookingResponse> getAllBookings();
     ResponseEntity<AllBookingResponse> getAllOwnedBookings();
-
     ResponseEntity<BookingResponse> getBookingById(Long id);
     ResponseEntity<BookingResponse> getOwnedBookingById(long bookingid);
     ResponseEntity<AvailableTimeSlotsResponse> getAvailableTimeslotsByDay(AvailableTimeSlotRequest availableTimeSlotRequest);

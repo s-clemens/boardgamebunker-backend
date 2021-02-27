@@ -12,7 +12,6 @@ import nl.novi.clemens.bgbbackend.payload.response.AllBookingResponse;
 import nl.novi.clemens.bgbbackend.payload.response.AvailableTimeSlotsResponse;
 import nl.novi.clemens.bgbbackend.payload.response.BookingLineResponse;
 import nl.novi.clemens.bgbbackend.payload.response.BookingResponse;
-import nl.novi.clemens.bgbbackend.payload.response.GLGuestResponse;
 import nl.novi.clemens.bgbbackend.payload.response.GLGuestlistResponse;
 import nl.novi.clemens.bgbbackend.payload.response.GLPlayroomResponse;
 import nl.novi.clemens.bgbbackend.payload.response.GLTimeslotResponse;
@@ -31,19 +30,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static nl.novi.clemens.bgbbackend.domain.enums.ETimeslot.EARLY_AFTERNOON;
-import static nl.novi.clemens.bgbbackend.domain.enums.ETimeslot.EVENING;
-import static nl.novi.clemens.bgbbackend.domain.enums.ETimeslot.LATE_AFTERNOON;
-import static nl.novi.clemens.bgbbackend.domain.enums.ETimeslot.LATE_EVENING;
-import static nl.novi.clemens.bgbbackend.domain.enums.ETimeslot.LATE_MORNING;
 
 @Service
 public class BookingServiceImpl implements BookingService{

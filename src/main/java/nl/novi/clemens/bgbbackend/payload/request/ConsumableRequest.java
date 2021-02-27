@@ -2,9 +2,7 @@ package nl.novi.clemens.bgbbackend.payload.request;
 
 import nl.novi.clemens.bgbbackend.domain.enums.EConsumableType;
 import nl.novi.clemens.bgbbackend.domain.enums.EProductType;
-
 import javax.validation.constraints.NotBlank;
-import java.sql.Blob;
 
 public class ConsumableRequest {
 

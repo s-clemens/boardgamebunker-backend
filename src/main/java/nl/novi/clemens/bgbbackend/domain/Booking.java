@@ -1,7 +1,6 @@
 package nl.novi.clemens.bgbbackend.domain;
 
 import nl.novi.clemens.bgbbackend.domain.enums.ETimeslot;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table (name = "booking")

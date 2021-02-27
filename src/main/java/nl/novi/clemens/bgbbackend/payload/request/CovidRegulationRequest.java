@@ -1,13 +1,9 @@
 package nl.novi.clemens.bgbbackend.payload.request;
 
-import org.apache.tomcat.jni.Local;
-
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class CovidRegulationRequest {
-
 
     @NotBlank
     private int nrallowedguests;

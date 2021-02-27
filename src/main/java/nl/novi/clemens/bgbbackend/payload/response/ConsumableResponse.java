@@ -1,7 +1,5 @@
 package nl.novi.clemens.bgbbackend.payload.response;
 
-import java.sql.Blob;
-
 public class ConsumableResponse {
 
     private long id;

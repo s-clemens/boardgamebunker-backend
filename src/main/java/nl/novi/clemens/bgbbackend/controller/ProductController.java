@@ -1,6 +1,5 @@
 package nl.novi.clemens.bgbbackend.controller;
 
-
 import nl.novi.clemens.bgbbackend.domain.Product;
 import nl.novi.clemens.bgbbackend.payload.request.BoardgameRequest;
 import nl.novi.clemens.bgbbackend.payload.request.ConsumableRequest;
@@ -107,8 +106,4 @@ public class ProductController {
     public ResponseEntity<MessageResponse> updateConsumableById(@RequestBody ConsumableRequest consumableRequest, @PathVariable Long id) {
         return productServiceImpl.updateConsumableById(consumableRequest, id);
     }
-
-    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    // Possible to add more functionality like sorts and finds. But this should do for the main operation.
-
 }

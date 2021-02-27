@@ -1,20 +1,16 @@
 package nl.novi.clemens.bgbbackend.service;
 
-
 import nl.novi.clemens.bgbbackend.domain.enums.ERole;
 import nl.novi.clemens.bgbbackend.domain.Role;
 import nl.novi.clemens.bgbbackend.domain.User;
 import nl.novi.clemens.bgbbackend.payload.request.LoginRequest;
 import nl.novi.clemens.bgbbackend.payload.request.SignupRequest;
-//test
 import nl.novi.clemens.bgbbackend.payload.request.TokenRequest;
-
 import nl.novi.clemens.bgbbackend.payload.response.JwtResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.repository.RoleRepository;
 import nl.novi.clemens.bgbbackend.repository.UserRepository;
 import nl.novi.clemens.bgbbackend.service.security.jwt.JwtUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,8 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +29,6 @@ import java.util.stream.Collectors;
 public class AuthorizationService {
 
     private static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found.";
-
     private UserRepository userRepository;
     private PasswordEncoder encoder;
     private RoleRepository roleRepository;
@@ -67,14 +60,6 @@ public class AuthorizationService {
         this.jwtUtils = jwtUtils;
     }
 
-    /**
-     *
-     * Deze methode verwerkt de gebruiker die wil registreren. De username en e-mail worden gecheckt. Eventuele rollen
-     * worden toegevoegd en de gebruiker wordt opgeslagen in de database.
-     *
-     * @param signUpRequest de payload signup-request met gebruikersnaam en wachtwoord.
-     * @return een HTTP response met daarin een succesbericht.
-     */
     public ResponseEntity<MessageResponse> registerUser(@Valid SignupRequest signUpRequest) {
         if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
             return ResponseEntity

@@ -6,7 +6,6 @@ import nl.novi.clemens.bgbbackend.payload.request.GuestlistRequest;
 import nl.novi.clemens.bgbbackend.payload.response.AllBookingResponse;
 import nl.novi.clemens.bgbbackend.payload.response.AvailableTimeSlotsResponse;
 import nl.novi.clemens.bgbbackend.payload.response.BookingResponse;
-import nl.novi.clemens.bgbbackend.payload.response.GLTimeslotResponse;
 import nl.novi.clemens.bgbbackend.payload.response.GuestlistResponse;
 import nl.novi.clemens.bgbbackend.payload.response.MessageResponse;
 import nl.novi.clemens.bgbbackend.service.BookingService;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/booking")
@@ -30,7 +28,6 @@ public class BookingController {
 
     @Autowired
     BookingService bookingService;
-
 
     // Post Booking
     @PreAuthorize("hasRole('USER')")
@@ -65,10 +62,6 @@ public class BookingController {
     public ResponseEntity<BookingResponse> getOwnedBookingById(@PathVariable("bookingid") Long bookingid){
         return bookingService.getOwnedBookingById(bookingid);
     }
-
-    // Get booking guest list by id
-
-    // Get booking products by id
 
     // cancel booking
     @PreAuthorize("hasRole('ADMIN')")

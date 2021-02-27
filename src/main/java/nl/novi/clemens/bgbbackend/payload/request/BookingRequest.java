@@ -1,8 +1,6 @@
 package nl.novi.clemens.bgbbackend.payload.request;
 
-import nl.novi.clemens.bgbbackend.domain.Guest;
 import nl.novi.clemens.bgbbackend.domain.enums.ETimeslot;
-
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 

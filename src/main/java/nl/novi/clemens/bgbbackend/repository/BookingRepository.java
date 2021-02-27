@@ -2,9 +2,7 @@ package nl.novi.clemens.bgbbackend.repository;
 
 import nl.novi.clemens.bgbbackend.domain.Booking;
 import nl.novi.clemens.bgbbackend.domain.User;
-import nl.novi.clemens.bgbbackend.domain.enums.ETimeslot;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.time.LocalDate;
 import java.util.List;
 

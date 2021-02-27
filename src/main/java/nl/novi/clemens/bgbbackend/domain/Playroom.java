@@ -1,7 +1,6 @@
 package nl.novi.clemens.bgbbackend.domain;
 
 import nl.novi.clemens.bgbbackend.domain.enums.EPlayroomNr;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
