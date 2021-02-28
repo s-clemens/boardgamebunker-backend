@@ -1,5 +1,6 @@
 package nl.novi.clemens.bgbbackend.payload.request;
 
+import nl.novi.clemens.bgbbackend.domain.Boardgame;
 import nl.novi.clemens.bgbbackend.domain.enums.EBoardgameType;
 import nl.novi.clemens.bgbbackend.domain.enums.EProductType;
 import javax.validation.constraints.NotBlank;

@@ -262,9 +262,7 @@ public class ProductServiceImpl implements ProductService {
                     product.getImage_cover(),
                     product.getProduct_price()
             );
-            System.out.println("1");
             consumables.add(response);
-            System.out.println("2");
         }
         return consumables;
     }
