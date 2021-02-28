@@ -70,13 +70,11 @@ public class ProductController {
         return productServiceImpl.getConsumableById(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/boardgame/all")
     public List<BoardgameResponse> getBoardgames(){
         return productServiceImpl.getBoardgames();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/consumable/all")
     public List<ConsumableResponse> getConsumablesSortedOnType(){
         return productServiceImpl.getConsumablesSortedOnType();
